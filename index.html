@@ -50,11 +50,19 @@
                 opacity: 0.5;
             }
 
-            .reset-button {
+            .reset-button, .autoplay-button {
                 font-family: Fjalla One;
                 padding: 10px;
                 background-color: rgb(66, 204, 141);
-                color: black;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+            
+            .autoplay-toggled-on {
+                font-family: Fjalla One;
+                padding: 10px;
+                background-color: rgb(34, 159, 103);
                 border: none;
                 border-radius: 5px;
                 cursor: pointer;
@@ -111,15 +119,21 @@
                 <p class="score">Wins: 0 | Losses: 0 | Ties: 0</p>
             </div>
     
-            <button class="reset-button" onclick="
-                score.wins = 0;
-                score.losses = 0;
-                score.ties = 0;
-                localStorage.removeItem('score');
-                updatePage();
-                document.querySelector('.result').innerText = '';
-                document.querySelector('.moves').innerText = '';
-            ">Reset Score</button>
+            <div class="secondary-button-container">
+               <button class="reset-button" onclick="
+                    score.wins = 0;
+                    score.losses = 0;
+                    score.ties = 0;
+                    localStorage.removeItem('score');
+                    updatePage();
+                    document.querySelector('.result').innerText = '';
+                    document.querySelector('.moves').innerText = '';
+                ">Reset Score</button>
+
+                <button class="autoplay-button" onclick="
+                    autoPlay();
+                ">Auto Play</button> 
+            </div>
         </div>
             
         <script>
@@ -182,6 +196,30 @@
                 document.querySelector('.result').innerText = result;
 
                 document.querySelector('.moves').innerText = `Your Move: ${playerMove}. \nComputer's move: ${computerMove}.`;
+            }
+
+            let isAutoPlaying = false;
+            let intervalId;
+            
+            function autoPlay() {
+                let autoPlayButton = document.querySelector('.autoplay-button').classList;
+                
+                if (!autoPlayButton.contains('autoplay-toggled-on')) {
+                    autoPlayButton.add('autoplay-toggled-on'); 
+                } else {
+                    autoPlayButton.remove('autoplay-toggled-on');
+                }
+            
+                if (!isAutoPlaying) {
+                    intervalId = setInterval(function() {
+                        const playerMove = pickComputerMove();
+                        playGame(playerMove);
+                    }, 1000);     
+                    isAutoPlaying = true;
+                } else {
+                    clearInterval(intervalId);
+                    isAutoPlaying = false;
+                }
             }
 
             function pickComputerMove() {
