@@ -1,0 +1,95 @@
+body {
+    display: flex;
+    font-family: Fjalla One;
+    background-color: rgb(229, 255, 241);
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.button-container {
+    display: flex;
+    column-gap: 10px;
+}
+
+.play-button {
+    font-size: 50px;
+    padding: 20px;
+    border-radius: 30px;
+    background-color: white;
+    border: solid;
+    border-width: 1.5px;
+    cursor: pointer;
+    transition: opacity 0.125s;
+}
+
+.play-button:hover {
+    opacity: 0.8;
+}
+
+.play-button:active {
+    opacity: 0.5;
+}
+
+.reset-button, .autoplay-button, .reset-yes-button, .reset-no-button{
+    font-family: Fjalla One;
+    padding: 10px;
+    background-color: rgb(66, 204, 141);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.autoplay-toggled-on {
+    font-family: Fjalla One;
+    padding: 10px;
+    background-color: rgb(34, 159, 103);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.reset-button:hover, .autoplay-button:hover, .reset-yes-button:hover, .reset-no-button:hover {
+    opacity: 0.8;
+}
+
+.reset-button:active, .autoplay-button:active, .reset-yes-button:active, .reset-no-button:active {
+    opacity: 0.5;
+}
+
+.stats-container {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    background-color: rgba(154, 224, 228, 0.775);
+    border-radius: 8px;
+    padding: 5px;
+    width: 100%;
+    text-align: center;
+}
+
+.stats-container p {
+    margin: 2px;
+    line-height: 25px;
+}
+
+.reset-confirmation-message-container {
+    display: none;
+}
+
+.reset-confirmation-message-container-active {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    background-color: rgba(154, 224, 228, 0.775);
+    border-radius: 8px;
+    padding: 0px 10px;
+    width: 100%;
+}
