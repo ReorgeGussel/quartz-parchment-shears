@@ -110,7 +110,7 @@ function autoPlay() {
         intervalId = setInterval(function() {
             const playerMove = pickComputerMove();
             playGame(playerMove);
-        }, 1);     
+        }, 1000);     
         isAutoPlaying = true;
         document.querySelector('.autoplay-button').innerText = 'Stop Playing';
     } else {
